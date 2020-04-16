@@ -552,7 +552,12 @@ var app = new Vue ({
 
         // Get all Clients
         loadClients: function () {
-          fetch( "https://git.heroku.com/storage-facility-project.git/clients" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/clients",{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          } ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.clients = data;
                 this.loadCharges();
@@ -816,7 +821,12 @@ var app = new Vue ({
 
         // GET ALL UNITS
         loadUnits: function(){
-          fetch( "https://git.heroku.com/storage-facility-project.git/units" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/units",{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.units = data;
               });
@@ -837,7 +847,12 @@ var app = new Vue ({
           console.log(unit);
           this.unit_info_dialog = true;
           if(unit.customerId != ""){
-            fetch( `https://git.heroku.com/storage-facility-project.git/clients/${unit.customerId}` ).then( ( response ) => {
+            fetch( `https://git.heroku.com/storage-facility-project.git/clients/${unit.customerId}` ,{
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.selected_unit.client = data.client;
               });
@@ -914,7 +929,12 @@ var app = new Vue ({
         },
       
         loadTasks: function () {
-          fetch( "https://git.heroku.com/storage-facility-project.git/tasks" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/tasks",{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.tasks = data
             });
@@ -1014,7 +1034,12 @@ var app = new Vue ({
 
         // Lead Methods
         loadLeads: function(){
-          fetch( "https://git.heroku.com/storage-facility-project.git/leads" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/leads",{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.leads = data
             });
