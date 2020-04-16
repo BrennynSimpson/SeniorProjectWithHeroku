@@ -530,7 +530,7 @@ var app = new Vue ({
           var req_body = {
             customer_id: stripeId
           }
-          fetch( `http://localhost:3000/charges`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/charges`, {
             method: "POST",
             headers: {
               "Content-type": "application/json"
@@ -552,7 +552,7 @@ var app = new Vue ({
 
         // Get all Clients
         loadClients: function () {
-          fetch( "http://localhost:3000/clients" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/clients" ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.clients = data;
                 this.loadCharges();
@@ -576,7 +576,7 @@ var app = new Vue ({
             moveOutDate: this.new_client_move_out_date
           }
 
-          fetch( "http://localhost:3000/clients", {
+          fetch( "https://git.heroku.com/storage-facility-project.git/clients", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -611,7 +611,7 @@ var app = new Vue ({
         },
         
         deleteClient: function  ( client ){
-          fetch( `http://localhost:3000/clients/${ client._id }`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/clients/${ client._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -671,7 +671,7 @@ var app = new Vue ({
             moveOutDate: this.dialog_client.client.moveOutDate
 
           }
-          fetch( `http://localhost:3000/clients/${this.dialog_client.client._id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/clients/${this.dialog_client.client._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -697,7 +697,7 @@ var app = new Vue ({
             unitSize: this.unit_to_be_assigned_to_client.unitSize,
             occupied: true,
           }
-          fetch( `http://localhost:3000/units/${this.unit_to_be_assigned_to_client._id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.unit_to_be_assigned_to_client._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -723,7 +723,7 @@ var app = new Vue ({
             unitSize: this.selected_unit.unit.unitSize,
             occupied: false,
           }
-          fetch( `http://localhost:3000/units/${this.selected_unit.unit._id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.selected_unit.unit._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -748,7 +748,7 @@ var app = new Vue ({
             unitNumber: this.new_unit_number,
             occupied: false,
           }
-          fetch( "http://localhost:3000/units", {
+          fetch( "https://git.heroku.com/storage-facility-project.git/units", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -772,7 +772,7 @@ var app = new Vue ({
 
         // Delete Unit
         deleteUnit: function  ( unit ){
-          fetch( `http://localhost:3000/units/${ unit._id }`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/units/${ unit._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -795,7 +795,7 @@ var app = new Vue ({
             occupied: this.editing_unit_occupied
           }
 
-          fetch( `http://localhost:3000/units/${this.editing_unit_id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.editing_unit_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -816,7 +816,7 @@ var app = new Vue ({
 
         // GET ALL UNITS
         loadUnits: function(){
-          fetch( "http://localhost:3000/units" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/units" ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.units = data;
               });
@@ -837,7 +837,7 @@ var app = new Vue ({
           console.log(unit);
           this.unit_info_dialog = true;
           if(unit.customerId != ""){
-            fetch( `http://localhost:3000/clients/${unit.customerId}` ).then( ( response ) => {
+            fetch( `https://git.heroku.com/storage-facility-project.git/clients/${unit.customerId}` ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.selected_unit.client = data.client;
               });
@@ -869,7 +869,7 @@ var app = new Vue ({
               var req_body = {
                 customer_id: client.stripeId
               }
-              fetch( `http://localhost:3000/charges`, {
+              fetch( `https://git.heroku.com/storage-facility-project.git/charges`, {
                 method: "POST",
                 headers: {
                   "Content-type": "application/json"
@@ -914,7 +914,7 @@ var app = new Vue ({
         },
       
         loadTasks: function () {
-          fetch( "http://localhost:3000/tasks" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/tasks" ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.tasks = data
             });
@@ -930,7 +930,7 @@ var app = new Vue ({
               createdBy: this.new_task_created_by
           }
 
-          fetch( "http://localhost:3000/tasks", {
+          fetch( "https://git.heroku.com/storage-facility-project.git/tasks", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -963,7 +963,7 @@ var app = new Vue ({
             complete: this.editing_task_complete
           }
 
-          fetch( `http://localhost:3000/tasks/${this.editing_task_id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/tasks/${this.editing_task_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -987,7 +987,7 @@ var app = new Vue ({
         },
 
         deleteTask: function  ( task ){
-          fetch( `http://localhost:3000/tasks/${ task._id }`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/tasks/${ task._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -1014,7 +1014,7 @@ var app = new Vue ({
 
         // Lead Methods
         loadLeads: function(){
-          fetch( "http://localhost:3000/leads" ).then( ( response ) => {
+          fetch( "https://git.heroku.com/storage-facility-project.git/leads" ).then( ( response ) => {
               response.json(  ).then( ( data ) => {
                 this.leads = data
             });
@@ -1033,7 +1033,7 @@ var app = new Vue ({
             date: new Date().toISOString().substr(0, 10),
             contacted: false
           }
-          fetch( "http://localhost:3000/leads", {
+          fetch( "https://git.heroku.com/storage-facility-project.git/leads", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -1061,7 +1061,7 @@ var app = new Vue ({
         },
 
         deleteLead: function( lead ) {
-          fetch( `http://localhost:3000/leads/${ lead._id }`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/leads/${ lead._id }`, {
               method: "DELETE"
           }).then( function( response ){
             if( response.status == 204 ){
@@ -1088,7 +1088,7 @@ var app = new Vue ({
             contacted: this.editing_lead_contacted
           }
 
-          fetch( `http://localhost:3000/leads/${this.editing_lead_id}`, {
+          fetch( `https://git.heroku.com/storage-facility-project.git/leads/${this.editing_lead_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
