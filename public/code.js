@@ -73,8 +73,8 @@ var createPaymentMethodAndCustomer = function(stripe, card) {
 async function createCustomer(paymentMethod, cardholderEmail) {
     var cardholderPlan = document.querySelector('#plan_selector').value
 
-  return fetch('https://git.heroku.com/storage-facility-project.git/create-customer', {
-    method: 'post',
+  return fetch('/create-customer', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -123,8 +123,8 @@ function handleSubscription(subscription) {
 }
 
 function confirmSubscription(subscriptionId) {
-  return fetch('https://git.heroku.com/storage-facility-project.git/subscription', {
-    method: 'post',
+  return fetch('/subscription', {
+    method: 'POST',
     headers: {
       'Content-type': 'application/json'
     },
@@ -141,8 +141,8 @@ function confirmSubscription(subscriptionId) {
 }
 
 function getPublicKey() {
-  return fetch('https://git.heroku.com/storage-facility-project.git/public-key', {
-    method: 'get',
+  return fetch('/public-key', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
@@ -527,28 +527,21 @@ var app = new Vue ({
 
         // Stripe Methods
         getClientInvoices: function (stripeId) {
-          // var req_body = {
-          //   customer_id: stripeId
-          // }
-          fetch( `https://git.heroku.com/storage-facility-project.git/charges/${stripeId}` ).then( ( response ) => {
-              response.json(  ).then( ( invoices ) => {
-                // this.selected_unit.client = data.client;
-                this.dialog_client.first_invoice = invoices[0];
-                this.dialog_client.invoices =  invoices;
-              });
+          var req_body = {
+            customer_id: stripeId
+          }
+          fetch( `https://git.heroku.com/storage-facility-project.git/charges/`, {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify( req_body )
+          }).then( ( response ) => {
+            response.json(  ).then( ( invoices ) => {
+              this.dialog_client.first_invoice = invoices[0];
+              this.dialog_client.invoices =  invoices;
             });
-          // fetch( `https://git.heroku.com/storage-facility-project.git/charges/${stripeId}`, {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-type": "application/json"
-          //   },
-          //   body: JSON.stringify( req_body )
-          // }).then( ( response ) => {
-          //   response.json(  ).then( ( invoices ) => {
-          //     this.dialog_client.first_invoice = invoices[0];
-          //     this.dialog_client.invoices =  invoices;
-          //   });
-          // });
+          });
         },
 
         // Clients Methods

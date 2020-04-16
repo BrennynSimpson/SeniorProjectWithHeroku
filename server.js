@@ -75,14 +75,14 @@ server.get('/', (req, res) => {
 
 
 // Get list of charges from Stripe
-// server.get("/charges", function(req, res){
-//     stripe.charges.list(
-//       {limit: 10},
-//       function(err, charges) {
-//       res.status(200);
-//       res.json( charges );
-//       })
-//   });
+server.get("/charges", function(req, res){
+    stripe.charges.list(
+      {limit: 10},
+      function(err, charges) {
+      res.status(200);
+      res.json( charges );
+      })
+  });
 
 // Get list of customers from Stripe
 server.get("/customers", function(req, res){
@@ -119,25 +119,24 @@ server.post("/customers", function(req, res){
 });
 
 // POST new Charge
-server.get("/charges/:id", function(req, res) {
-  // if(req.body.payment_id != null) {
-  //   stripe.charges.retrieve( req.body.payment_id, function(err, charge) {
-  //       // asynchronously called
-  //       if(charge != null){
-  //         res.status(200);
-  //         res.json( charge );
-  //       } else {
-  //         var response = {
-  //           msg: err.message
-  //         };
-  //         res.status( 400 );
-  //         res.json( response );
+server.post("/charges", function(req, res) {
+  if(req.body.payment_id != null) {
+    stripe.charges.retrieve( req.body.payment_id, function(err, charge) {
+        // asynchronously called
+        if(charge != null){
+          res.status(200);
+          res.json( charge );
+        } else {
+          var response = {
+            msg: err.message
+          };
+          res.status( 400 );
+          res.json( response );
   
-  //       }
-  //     });
-  // } else 
-  if(req.params.id != null){
-    stripe.charges.list( {customer: req.params.id}, function(err, charges) {
+        }
+      });
+  } else if(req.body.customer_id != null){
+    stripe.charges.list( {customer: req.body.customer_id}, function(err, charges) {
       // asynchronously called
       if(charges.data != null){
         res.status(200);
