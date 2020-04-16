@@ -23,7 +23,7 @@ server.use(bodyParser.urlencoded({ extended: false}));
 //       }
 //     })
 //   );
-server.use( cors({credentials: true, origin: 'null,best-income-tracker-ever-2.herokuapp.com'}) );
+server.use( cors({credentials: true, origin: 'http://localhost:3000, https://git.heroku.com/storage-facility-project.git'}) );
 server.use(express.static('public'));
 
 server.get('/', (req, res) => {
