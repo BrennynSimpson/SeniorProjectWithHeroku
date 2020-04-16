@@ -368,10 +368,10 @@ var app = new Vue ({
     },
 
     created: function ( ) {
-        this.loadClients();
-        this.loadTasks();
-        this.loadLeads();
-        this.loadUnits();
+        // this.loadClients();
+        // this.loadTasks();
+        // this.loadLeads();
+        // this.loadUnits();
       },
 
     computed: {
