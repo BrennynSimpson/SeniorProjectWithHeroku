@@ -12,18 +12,18 @@ const port = process.env.PORT || 3000;
 
 // Midleware
 server.use(bodyParser.urlencoded({ extended: false}));
-server.use(
-    express.json({
-      // We need the raw body to verify webhook signatures.
-      // Let's compute it only when hitting the Stripe webhook endpoint.
-      verify: function(req, res, buf) {
-        if (req.originalUrl.startsWith('/webhook')) {
-          req.rawBody = buf.toString();
-        }
-      }
-    })
-  );
-server.use( cors( ) );
+// server.use(
+//     express.json({
+//       // We need the raw body to verify webhook signatures.
+//       // Let's compute it only when hitting the Stripe webhook endpoint.
+//       verify: function(req, res, buf) {
+//         if (req.originalUrl.startsWith('/webhook')) {
+//           req.rawBody = buf.toString();
+//         }
+//       }
+//     })
+//   );
+server.use( cors({credentials: true, origin: 'null,best-income-tracker-ever-2.herokuapp.com'}) );
 server.use(express.static('public'));
 
 server.get('/', (req, res) => {
