@@ -75,14 +75,14 @@ server.get('/', (req, res) => {
 
 
 // Get list of charges from Stripe
-server.get("/charges", function(req, res){
-    stripe.charges.list(
-      {limit: 10},
-      function(err, charges) {
-      res.status(200);
-      res.json( charges );
-      })
-  });
+// server.get("/charges", function(req, res){
+//     stripe.charges.list(
+//       {limit: 10},
+//       function(err, charges) {
+//       res.status(200);
+//       res.json( charges );
+//       })
+//   });
 
 // Get list of customers from Stripe
 server.get("/customers", function(req, res){
