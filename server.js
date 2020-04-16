@@ -27,7 +27,7 @@ server.use( cors( ) );
 server.use(express.static(process.env.STATIC_DIR));
 
 server.get('/', (req, res) => {
-    const path = resolve(process.env.STATIC_DIR + '/index.html');
+    const path = resolve('./public/index.html');
     res.sendFile(path);
   });
   
