@@ -23,11 +23,11 @@ server.use(
       }
     })
   );
-server.use( cors( ) );
-server.use(express.static(process.env.STATIC_DIR));
+server.use( cors( {origin: 'null,best-income-tracker-ever-2.herokuapp.com'}) );
+server.use(express.static('public'));
 
 server.get('/', (req, res) => {
-    const path = resolve('./public/index.html');
+    const path = resolve(process.env.STATIC_DIR + '/index.html');
     res.sendFile(path);
   });
   
