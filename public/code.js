@@ -879,7 +879,8 @@ var app = new Vue ({
 
         // Payment Functions
         loadCharges: function(){
-          this.charges =[]
+          this.charges =[];
+          
           this.clients.forEach( client => {
             if(client.stripeId != ""){
               var req_body = {
