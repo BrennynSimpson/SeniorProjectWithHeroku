@@ -210,15 +210,15 @@ var app = new Vue ({
         charge_headers: [
           { text: 'Amount', align: 'start', sortable: false, value: 'amount'},
           { text: 'Description', value: 'description' },
-          { text: 'Customer', value: 'billing_details.email' },
-          { text: 'Date', value: 'created' },
+          { text: 'Email', value: 'billing_details.email' },
+          { text: 'Name', value: 'billing_details.name' },
           { text: 'Actions', value: 'action', sortable: false },
         ],
         charge_summary_headers: [
           { text: 'Amount', align: 'start', sortable: false, value: 'amount'},
           { text: 'Description', value: 'description' },
           { text: 'Customer', value: 'billing_details.email' },
-          { text: 'Date', value: 'created' },
+          { text: 'Name', value: 'billing_details.name' },
         ],
         dialog_charge: {
           client: {},
@@ -899,7 +899,7 @@ var app = new Vue ({
                       client: client,
                       id: invoice.id,
                       billing_details: invoice.billing_details,
-                      amount: invoice.amount,
+                      amount: "$50.00",
                       description: invoice.description,
                       card: invoice.payment_method_details.card, 
                       receipt_url: invoice.receipt_url,
