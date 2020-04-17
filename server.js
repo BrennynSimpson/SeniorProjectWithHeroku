@@ -12,19 +12,19 @@ const port = process.env.PORT || 3000;
 
 // Midleware
 server.use(bodyParser.urlencoded({ extended: false}));
-// server.use(
-//     express.json({
-//       // We need the raw body to verify webhook signatures.
-//       // Let's compute it only when hitting the Stripe webhook endpoint.
-//       verify: function(req, res, buf) {
-//         if (req.originalUrl.startsWith('/webhook')) {
-//           req.rawBody = buf.toString();
-//         }
-//       }
-//     })
-//   );
-server.use( cors({credentials: true, origin: 'http://localhost:3000, https://git.heroku.com/storage-facility-project.git'}) );
-server.use(express.static('public'));
+server.use(
+    express.json({
+      // We need the raw body to verify webhook signatures.
+      // Let's compute it only when hitting the Stripe webhook endpoint.
+      verify: function(req, res, buf) {
+        if (req.originalUrl.startsWith('/webhook')) {
+          req.rawBody = buf.toString();
+        }
+      }
+    })
+  );
+server.use( cors( ) );
+server.use(express.static(process.env.STATIC_DIR));
 
 server.get('/', (req, res) => {
     const path = resolve(process.env.STATIC_DIR + '/index.html');
