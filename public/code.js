@@ -73,7 +73,7 @@ var createPaymentMethodAndCustomer = function(stripe, card) {
 async function createCustomer(paymentMethod, cardholderEmail) {
     var cardholderPlan = document.querySelector('#plan_selector').value
 
-  return fetch('https://storage-facility-project.herokuapp.com/create-customer', {
+  return fetch('/create-customer', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -123,7 +123,7 @@ function handleSubscription(subscription) {
 }
 
 function confirmSubscription(subscriptionId) {
-  return fetch('https://storage-facility-project.herokuapp.com/subscription', {
+  return fetch('/subscription', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -141,7 +141,7 @@ function confirmSubscription(subscriptionId) {
 }
 
 function getPublicKey() {
-  return fetch('https://storage-facility-project.herokuapp.com/public-key', {
+  return fetch('/public-key', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
