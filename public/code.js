@@ -73,7 +73,7 @@ var createPaymentMethodAndCustomer = function(stripe, card) {
 async function createCustomer(paymentMethod, cardholderEmail) {
     var cardholderPlan = document.querySelector('#plan_selector').value
 
-  return fetch('https://git.heroku.com/storage-facility-project.git/create-customer', {
+  return fetch('https://storage-facility-project.herokuapp.com/create-customer', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -123,7 +123,7 @@ function handleSubscription(subscription) {
 }
 
 function confirmSubscription(subscriptionId) {
-  return fetch('https://git.heroku.com/storage-facility-project.git/subscription', {
+  return fetch('https://storage-facility-project.herokuapp.com/subscription', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -141,7 +141,7 @@ function confirmSubscription(subscriptionId) {
 }
 
 function getPublicKey() {
-  return fetch('https://git.heroku.com/storage-facility-project.git/public-key', {
+  return fetch('https://storage-facility-project.herokuapp.com/public-key', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -530,7 +530,7 @@ var app = new Vue ({
           var req_body = {
             customer_id: stripeId
           }
-          fetch( `https://git.heroku.com/storage-facility-project.git/charges/`, {
+          fetch( `https://storage-facility-project.herokuapp.com/charges/`, {
             method: "POST",
             headers: {
               "Content-type": "application/json"
@@ -552,7 +552,7 @@ var app = new Vue ({
 
         // Get all Clients
         loadClients: function () {
-          fetch( "https://git.heroku.com/storage-facility-project.git/clients",{
+          fetch( "https://storage-facility-project.herokuapp.com/clients",{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -581,7 +581,7 @@ var app = new Vue ({
             moveOutDate: this.new_client_move_out_date
           }
 
-          fetch( "https://git.heroku.com/storage-facility-project.git/clients", {
+          fetch( "https://storage-facility-project.herokuapp.com/clients", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -616,7 +616,7 @@ var app = new Vue ({
         },
         
         deleteClient: function  ( client ){
-          fetch( `https://git.heroku.com/storage-facility-project.git/clients/${ client._id }`, {
+          fetch( `https://storage-facility-project.herokuapp.com/clients/${ client._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -676,7 +676,7 @@ var app = new Vue ({
             moveOutDate: this.dialog_client.client.moveOutDate
 
           }
-          fetch( `https://git.heroku.com/storage-facility-project.git/clients/${this.dialog_client.client._id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/clients/${this.dialog_client.client._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -702,7 +702,7 @@ var app = new Vue ({
             unitSize: this.unit_to_be_assigned_to_client.unitSize,
             occupied: true,
           }
-          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.unit_to_be_assigned_to_client._id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/units/${this.unit_to_be_assigned_to_client._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -728,7 +728,7 @@ var app = new Vue ({
             unitSize: this.selected_unit.unit.unitSize,
             occupied: false,
           }
-          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.selected_unit.unit._id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/units/${this.selected_unit.unit._id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -753,7 +753,7 @@ var app = new Vue ({
             unitNumber: this.new_unit_number,
             occupied: false,
           }
-          fetch( "https://git.heroku.com/storage-facility-project.git/units", {
+          fetch( "https://storage-facility-project.herokuapp.com/units", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -777,7 +777,7 @@ var app = new Vue ({
 
         // Delete Unit
         deleteUnit: function  ( unit ){
-          fetch( `https://git.heroku.com/storage-facility-project.git/units/${ unit._id }`, {
+          fetch( `https://storage-facility-project.herokuapp.com/units/${ unit._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -800,7 +800,7 @@ var app = new Vue ({
             occupied: this.editing_unit_occupied
           }
 
-          fetch( `https://git.heroku.com/storage-facility-project.git/units/${this.editing_unit_id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/units/${this.editing_unit_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -821,7 +821,7 @@ var app = new Vue ({
 
         // GET ALL UNITS
         loadUnits: function(){
-          fetch( "https://git.heroku.com/storage-facility-project.git/units",{
+          fetch( "https://storage-facility-project.herokuapp.com/units",{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -847,7 +847,7 @@ var app = new Vue ({
           console.log(unit);
           this.unit_info_dialog = true;
           if(unit.customerId != ""){
-            fetch( `https://git.heroku.com/storage-facility-project.git/clients/${unit.customerId}` ,{
+            fetch( `https://storage-facility-project.herokuapp.com/clients/${unit.customerId}` ,{
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'
@@ -884,7 +884,7 @@ var app = new Vue ({
               var req_body = {
                 customer_id: client.stripeId
               }
-              fetch( `https://git.heroku.com/storage-facility-project.git/charges`, {
+              fetch( `https://storage-facility-project.herokuapp.com/charges`, {
                 method: "POST",
                 headers: {
                   "Content-type": "application/json"
@@ -929,7 +929,7 @@ var app = new Vue ({
         },
       
         loadTasks: function () {
-          fetch( "https://git.heroku.com/storage-facility-project.git/tasks",{
+          fetch( "https://storage-facility-project.herokuapp.com/tasks",{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -950,7 +950,7 @@ var app = new Vue ({
               createdBy: this.new_task_created_by
           }
 
-          fetch( "https://git.heroku.com/storage-facility-project.git/tasks", {
+          fetch( "https://storage-facility-project.herokuapp.com/tasks", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -983,7 +983,7 @@ var app = new Vue ({
             complete: this.editing_task_complete
           }
 
-          fetch( `https://git.heroku.com/storage-facility-project.git/tasks/${this.editing_task_id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/tasks/${this.editing_task_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
@@ -1007,7 +1007,7 @@ var app = new Vue ({
         },
 
         deleteTask: function  ( task ){
-          fetch( `https://git.heroku.com/storage-facility-project.git/tasks/${ task._id }`, {
+          fetch( `https://storage-facility-project.herokuapp.com/tasks/${ task._id }`, {
               method: "DELETE"
           }).then( function( response ){
               if( response.status == 204 ){
@@ -1034,7 +1034,7 @@ var app = new Vue ({
 
         // Lead Methods
         loadLeads: function(){
-          fetch( "https://git.heroku.com/storage-facility-project.git/leads",{
+          fetch( "https://storage-facility-project.herokuapp.com/leads",{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -1058,7 +1058,7 @@ var app = new Vue ({
             date: new Date().toISOString().substr(0, 10),
             contacted: false
           }
-          fetch( "https://git.heroku.com/storage-facility-project.git/leads", {
+          fetch( "https://storage-facility-project.herokuapp.com/leads", {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -1086,7 +1086,7 @@ var app = new Vue ({
         },
 
         deleteLead: function( lead ) {
-          fetch( `https://git.heroku.com/storage-facility-project.git/leads/${ lead._id }`, {
+          fetch( `https://storage-facility-project.herokuapp.com/leads/${ lead._id }`, {
               method: "DELETE"
           }).then( function( response ){
             if( response.status == 204 ){
@@ -1113,7 +1113,7 @@ var app = new Vue ({
             contacted: this.editing_lead_contacted
           }
 
-          fetch( `https://git.heroku.com/storage-facility-project.git/leads/${this.editing_lead_id}`, {
+          fetch( `https://storage-facility-project.herokuapp.com/leads/${this.editing_lead_id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json"
