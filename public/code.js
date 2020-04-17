@@ -54,38 +54,39 @@ function showCardError(error) {
 
 var createPaymentMethodAndCustomer = function(stripe, card) {
   var cardholderEmail = document.querySelector('#email').value;
+  var cardholderName = app.new_client_first_name + " " + app.new_client_last_name
   stripe
     .createPaymentMethod('card', card, {
       billing_details: {
         email: cardholderEmail,
+        name: cardholderName
       },
     })
     .then(function(result) {
       if (result.error) {
         showCardError(result.error);
       } else {
-        var customerObject = createCustomer(result.paymentMethod.id, cardholderEmail);
-        console.log("Customer Object", customerObject);
+        var customerObject = createCustomer(result.paymentMethod.id, cardholderEmail, cardholderName);
       }
     });
 };
 
-async function createCustomer(paymentMethod, cardholderEmail) {
+async function createCustomer(paymentMethod, cardholderEmail, cardHolderName) {
     var cardholderPlan = document.querySelector('#plan_selector').value
 
   return fetch('/create-customer', {
-    method: 'POST',
+    method: 'post',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
         plan: cardholderPlan,
         email: cardholderEmail,
+        name: cardHolderName,
         payment_method: paymentMethod
     })
   })
     .then(response => {
-      console.log("response in Create Customer: ", response);
       return response.json();
     })
     .then(subscription => {
@@ -124,7 +125,7 @@ function handleSubscription(subscription) {
 
 function confirmSubscription(subscriptionId) {
   return fetch('/subscription', {
-    method: 'POST',
+    method: 'post',
     headers: {
       'Content-type': 'application/json'
     },
@@ -142,7 +143,7 @@ function confirmSubscription(subscriptionId) {
 
 function getPublicKey() {
   return fetch('/public-key', {
-    method: 'GET',
+    method: 'get',
     headers: {
       'Content-Type': 'application/json'
     }
